@@ -94,6 +94,11 @@ func (cs *ContainerService) setOrchestratorDefaults(isUpdate bool) {
 				// for backwards compatibility. Otherwise, use what is specified.
 				o.KubernetesConfig.NetworkPlugin = NetworkPluginKubenet
 			}
+		case NetworkPolicyWeave:
+			if o.KubernetesConfig.NetworkPlugin == "" {
+				// If not specified, then set the network plugin to be weave
+				o.KubernetesConfig.NetworkPlugin = NetworkPluginWeave
+			}
 		case NetworkPolicyCilium:
 			o.KubernetesConfig.NetworkPlugin = NetworkPolicyCilium
 		}

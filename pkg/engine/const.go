@@ -13,6 +13,8 @@ const (
 	NetworkPolicyNone = "none"
 	// NetworkPolicyCalico is the string expression for calico network policy config option
 	NetworkPolicyCalico = "calico"
+	// NetworkPolicyWeave is the string expression for weave network policy config option
+	NetworkPolicyWeave = "weave"
 	// NetworkPolicyCilium is the string expression for cilium network policy config option
 	NetworkPolicyCilium = "cilium"
 	// NetworkPolicyAzure is the string expression for Azure CNI network policy manager
@@ -39,6 +41,8 @@ const (
 	DefaultAzureNpmDaemonSetAddonName = "azure-npm-daemonset"
 	// DefaultCalicoDaemonSetAddonName is the name of calico daemonset addon
 	DefaultCalicoDaemonSetAddonName = "calico-daemonset"
+	// DefaultWeaveDaemonSetAddonName is the name of weave daemonset addon
+	DefaultWeaveDaemonSetAddonName = "weave-daemonset"
 	// DefaultCiliumDaemonSetAddonName is the name of cilium daemonset addon
 	DefaultCiliumDaemonSetAddonName = "cilium-daemonset"
 	// DefaultFlannelDaemonSetAddonName is the name of flannel plugin daemonset addon

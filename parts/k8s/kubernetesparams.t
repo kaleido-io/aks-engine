@@ -329,7 +329,8 @@
         "none",
         "azure",
         "calico",
-        "cilium"
+        "cilium",
+        "weave"
       ],
       "type": "string"
     },
@@ -342,7 +343,8 @@
         "kubenet",
         "azure",
         "flannel",
-        "cilium"
+        "cilium",
+        "weave"
       ],
       "type": "string"
     },

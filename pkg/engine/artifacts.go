@@ -170,6 +170,13 @@ func kubernetesAddonSettingsInit(profile *api.Properties) []kubernetesFeatureSet
 			profile.OrchestratorProfile.KubernetesConfig.GetAddonScript(DefaultCalicoDaemonSetAddonName),
 		},
 		{
+
+			"kubernetesmasteraddons-weave-daemonset.yaml",
+			"weave-daemonset.yaml",
+			profile.OrchestratorProfile.KubernetesConfig.NetworkPolicy == NetworkPolicyWeave,
+			profile.OrchestratorProfile.KubernetesConfig.GetAddonScript(DefaultWeaveDaemonSetAddonName),
+		},
+		{
 			"kubernetesmasteraddons-cilium-daemonset.yaml",
 			"cilium-daemonset.yaml",
 			profile.OrchestratorProfile.KubernetesConfig.NetworkPolicy == NetworkPolicyCilium,

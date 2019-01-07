@@ -75,11 +75,11 @@ const (
 
 var (
 	// NetworkPluginValues holds the valid values for network plugin implementation
-	NetworkPluginValues = [...]string{"", "kubenet", "azure", "cilium", "flannel"}
+	NetworkPluginValues = [...]string{"", "kubenet", "azure", "cilium", "flannel", "weave"}
 
 	// NetworkPolicyValues holds the valid values for a network policy
 	// "azure" and "none" are there for backwards-compatibility
-	NetworkPolicyValues = [...]string{"", "calico", "cilium", "azure", "none"}
+	NetworkPolicyValues = [...]string{"", "calico", "cilium", "azure", "weave", "none"}
 
 	// ContainerRuntimeValues holds the valid values for container runtimes
 	ContainerRuntimeValues = [...]string{"", "docker", "clear-containers", "kata-containers", "containerd"}

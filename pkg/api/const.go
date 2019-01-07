@@ -296,12 +296,16 @@ const (
 	// DefaultInternalLbStaticIPOffset specifies the offset of the internal LoadBalancer's IP
 	// address relative to the first consecutive Kubernetes static IP
 	DefaultInternalLbStaticIPOffset = 10
+	// NetworkPolicyWeave is the string expression for weave network policy config option
+	NetworkPolicyWeave = "weave"
 	// NetworkPolicyCalico is the string expression for calico network policy config option
 	NetworkPolicyCalico = "calico"
 	// NetworkPolicyCilium is the string expression for cilium network policy config option
 	NetworkPolicyCilium = "cilium"
 	// NetworkPluginFlannel is the string expression for flannel network policy config option
 	NetworkPluginFlannel = "flannel"
+	// NetworkPluginWeave is the string expression for weave network policy config option
+	NetworkPluginWeave = "weave"
 	// DefaultNetworkPlugin defines the network plugin to use by default
 	DefaultNetworkPlugin = NetworkPluginKubenet
 	// DefaultNetworkPolicy defines the network policy implementation to use by default

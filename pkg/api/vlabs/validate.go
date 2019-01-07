@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/Azure/go-autorest/autorest/to"
+	"gopkg.in/go-playground/validator.v9"
 
 	"github.com/Azure/aks-engine/pkg/api/common"
 	"github.com/Azure/aks-engine/pkg/helpers"
@@ -20,7 +21,6 @@ import (
 	"github.com/pkg/errors"
 	"github.com/satori/go.uuid"
 	log "github.com/sirupsen/logrus"
-	"gopkg.in/go-playground/validator.v9"
 )
 
 var (
@@ -74,6 +74,14 @@ var (
 		{
 			networkPlugin: "",
 			networkPolicy: "calico",
+		},
+		{
+			networkPlugin: "",
+			networkPolicy: "weave",
+		},
+		{
+			networkPlugin: "weave",
+			networkPolicy: "weave",
 		},
 		{
 			networkPlugin: "",
@@ -1149,7 +1157,7 @@ func (k *KubernetesConfig) validateNetworkPolicy(k8sVersion string, hasWindows b
 	}
 
 	// Temporary safety check, to be removed when Windows support is added.
-	if (networkPolicy == "calico" || networkPolicy == "cilium" || networkPolicy == "flannel") && hasWindows {
+	if (networkPolicy == "calico" || networkPolicy == "cilium" || networkPolicy == "flannel" || networkPolicy == "weave") && hasWindows {
 		return errors.Errorf("networkPolicy '%s' is not supporting windows agents", networkPolicy)
 	}
 
