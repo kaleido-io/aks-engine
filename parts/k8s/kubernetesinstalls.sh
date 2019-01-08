@@ -137,6 +137,8 @@ installClearContainersRuntime() {
 installNetworkPlugin() {
     if [[ "${NETWORK_PLUGIN}" = "azure" ]]; then
         installAzureCNI
+    elif [[ "${NETWORK_PLUGIN}" = "cni" ]]; then
+        installBareCNI
     elif [[ "${NETWORK_PLUGIN}" = "weave" ]]; then
         installWeaveCNI
     fi
@@ -184,11 +186,17 @@ installAzureCNI() {
     tar -xzf "$CNI_DOWNLOADS_DIR/${CNI_TGZ_TMP}" -C $CNI_BIN_DIR
 }
 
-installWeaveCNI() {
+installBareNI() {
+    # Configure the CNI config directories, ready for a daemonset install
+    # of a CNI infrastructure
     mkdir -p $CNI_CONFIG_DIR
     chown -R root:root $CNI_CONFIG_DIR
     chmod 755 $CNI_CONFIG_DIR
     mkdir -p $CNI_BIN_DIR
+}
+
+installWeaveCNI() {
+    installBareNI
     sudo curl -L git.io/weave -o /usr/local/bin/weave
     sudo chmod a+x /usr/local/bin/weave
     weave setup

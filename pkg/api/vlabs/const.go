@@ -75,7 +75,7 @@ const (
 
 var (
 	// NetworkPluginValues holds the valid values for network plugin implementation
-	NetworkPluginValues = [...]string{"", "kubenet", "azure", "cilium", "flannel", "weave"}
+	NetworkPluginValues = [...]string{"", "kubenet", "azure", "cilium", "flannel", "weave", "cni"}
 
 	// NetworkPolicyValues holds the valid values for a network policy
 	// "azure" and "none" are there for backwards-compatibility

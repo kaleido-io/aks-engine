@@ -68,6 +68,8 @@ const (
 	Kubenet NetworkPlugin = "kubenet"
 	// Weave represents weave network plugin
 	Weave NetworkPlugin = "weave"
+	// CNI represents bare cni networking, without a CNI installed during the cluster creation
+	CNI NetworkPlugin = "cni"
 )
 
 // NetworkPolicy represnets types of network policy

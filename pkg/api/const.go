@@ -304,8 +304,10 @@ const (
 	NetworkPolicyCilium = "cilium"
 	// NetworkPluginFlannel is the string expression for flannel network policy config option
 	NetworkPluginFlannel = "flannel"
-	// NetworkPluginWeave is the string expression for weave network policy config option
+	// NetworkPluginWeave is the string expression for weave network plugin config option
 	NetworkPluginWeave = "weave"
+	// NetworkPluginCNI is the string expression for CNI networking, without a particular CNI plugin installed during the cluster creation
+	NetworkPluginCNI = "cni"
 	// DefaultNetworkPlugin defines the network plugin to use by default
 	DefaultNetworkPlugin = NetworkPluginKubenet
 	// DefaultNetworkPolicy defines the network policy implementation to use by default
