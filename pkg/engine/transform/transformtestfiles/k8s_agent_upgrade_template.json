@@ -1065,12 +1065,11 @@
         "azure",
         "calico",
         "cilium",
-        "flannel",
-        "weave"
+        "flannel"
       ],
       "defaultValue": "none",
       "metadata": {
-        "description": "The network policy enforcement to use (none|azure|calico|cilium|flannel|weave)"
+        "description": "The network policy enforcement to use (none|azure|calico|cilium|flannel)"
       },
       "type": "string"
     },
