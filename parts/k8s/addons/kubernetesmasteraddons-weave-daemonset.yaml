@@ -191,6 +191,12 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: spec.nodeName
+            - name: WEAVE_MTU
+              value: "<weaveMTU>"
+            - name: CONN_LIMIT
+              value: "<weaveConnLimit>"
+            - name: IPALLOC_RANGE
+              value: "<weaveIPAllocRange>"
           image: 'docker.io/weaveworks/weave-kube:2.5.0'
           readinessProbe:
             httpGet:

@@ -329,6 +329,15 @@ MASTER_ARTIFACTS_CONFIG_PLACEHOLDER
     sed -i "s|<calicoIPAMConfig>|{\"type\": \"host-local\", \"subnet\": \"usePodCidr\"}|g" /etc/kubernetes/addons/calico-daemonset.yaml
     {{end}}
 {{end}}
+{{if eq .OrchestratorProfile.KubernetesConfig.NetworkPlugin "weave"}}
+    {{ range $aIdx, $addon := .OrchestratorProfile.KubernetesConfig.Addons }}
+      {{ if eq $addon.Name "weave-daemonset" }}
+        sed -i "s|<weaveMTU>|{{$addon.Config.mtu}}|g" /etc/kubernetes/addons/weave-daemonset.yaml
+        sed -i "s|<weaveConnLimit>|{{$addon.Config.connLimit}}|g" /etc/kubernetes/addons/weave-daemonset.yaml
+        sed -i "s|<weaveIPAllocRange>|{{$addon.Config.ipAllocRange}}|g" /etc/kubernetes/addons/weave-daemonset.yaml
+      {{ end }}
+    {{ end }}
+{{end}}
 {{if eq .OrchestratorProfile.KubernetesConfig.NetworkPlugin "flannel"}}
     sed -i "s|<kubeClusterCidr>|{{WrapAsParameter "kubeClusterCidr"}}|g" /etc/kubernetes/addons/flannel-daemonset.yaml
 {{end}}
