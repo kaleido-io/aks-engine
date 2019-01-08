@@ -76,6 +76,10 @@ var (
 			networkPolicy: "calico",
 		},
 		{
+			networkPlugin: "cni",
+			networkPolicy: "",
+		},
+		{
 			networkPlugin: "",
 			networkPolicy: "weave",
 		},
