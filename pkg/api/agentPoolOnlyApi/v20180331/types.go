@@ -66,6 +66,8 @@ const (
 	Azure NetworkPlugin = "azure"
 	// Kubenet represents Kubenet network plugin
 	Kubenet NetworkPlugin = "kubenet"
+	// Weave represents weave network plugin
+	Weave NetworkPlugin = "weave"
 )
 
 // NetworkPolicy represnets types of network policy

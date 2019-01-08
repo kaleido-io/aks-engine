@@ -137,6 +137,8 @@ installClearContainersRuntime() {
 installNetworkPlugin() {
     if [[ "${NETWORK_PLUGIN}" = "azure" ]]; then
         installAzureCNI
+    elif [[ "${NETWORK_PLUGIN}" = "weave" ]]; then
+        installWeaveCNI
     fi
     installCNI
     rm -rf $CNI_DOWNLOADS_DIR &
@@ -180,6 +182,13 @@ installAzureCNI() {
     chmod 755 $CNI_CONFIG_DIR
     mkdir -p $CNI_BIN_DIR
     tar -xzf "$CNI_DOWNLOADS_DIR/${CNI_TGZ_TMP}" -C $CNI_BIN_DIR
+}
+
+installWeaveCNI() {
+    mkdir -p $CNI_CONFIG_DIR
+    chown -R root:root $CNI_CONFIG_DIR
+    chmod 755 $CNI_CONFIG_DIR
+    mkdir -p $CNI_BIN_DIR
 }
 
 installContainerd() {

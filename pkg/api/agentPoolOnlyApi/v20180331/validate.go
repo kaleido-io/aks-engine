@@ -172,7 +172,7 @@ func validateVNET(a *Properties) error {
 	// validate network profile settings
 	if n != nil {
 		switch n.NetworkPlugin {
-		case Azure, Kubenet:
+		case Azure, Kubenet, Weave:
 			if n.ServiceCidr != "" && n.DNSServiceIP != "" && n.DockerBridgeCidr != "" {
 				// validate ServiceCidr
 				_, serviceCidr, err := net.ParseCIDR(n.ServiceCidr)
