@@ -16,6 +16,7 @@ items:
           }
       labels:
         name: weave-net
+        addonmanager.kubernetes.io/mode: "EnsureExists"
       namespace: kube-system
   - apiVersion: rbac.authorization.k8s.io/v1beta1
     kind: ClusterRole
@@ -32,6 +33,7 @@ items:
           }
       labels:
         name: weave-net
+        addonmanager.kubernetes.io/mode: "EnsureExists"
     rules:
       - apiGroups:
           - ''
@@ -73,6 +75,7 @@ items:
           }
       labels:
         name: weave-net
+        addonmanager.kubernetes.io/mode: "EnsureExists"
     roleRef:
       kind: ClusterRole
       name: weave-net
@@ -96,6 +99,7 @@ items:
           }
       labels:
         name: weave-net
+        addonmanager.kubernetes.io/mode: "EnsureExists"
       namespace: kube-system
     rules:
       - apiGroups:
@@ -128,6 +132,7 @@ items:
           }
       labels:
         name: weave-net
+        addonmanager.kubernetes.io/mode: "EnsureExists"
       namespace: kube-system
     roleRef:
       kind: Role
@@ -152,6 +157,7 @@ items:
           }
       labels:
         name: weave-net
+        addonmanager.kubernetes.io/mode: "EnsureExists"
       namespace: kube-system
     spec:
       minReadySeconds: 5

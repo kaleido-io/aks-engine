@@ -189,6 +189,9 @@ installWeaveCNI() {
     chown -R root:root $CNI_CONFIG_DIR
     chmod 755 $CNI_CONFIG_DIR
     mkdir -p $CNI_BIN_DIR
+    sudo curl -L git.io/weave -o /usr/local/bin/weave
+    sudo chmod a+x /usr/local/bin/weave
+    weave setup
 }
 
 installContainerd() {
