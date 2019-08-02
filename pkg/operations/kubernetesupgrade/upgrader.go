@@ -7,6 +7,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"math/rand"
 	"strings"
 	"time"
@@ -458,6 +459,29 @@ func (ku *Upgrader) upgradeAgentScaleSets(ctx context.Context) error {
 		random := rand.New(rand.NewSource(time.Now().UnixNano()))
 		deploymentSuffix := random.Int31()
 		deploymentName := fmt.Sprintf("agentscaleset-%s-%d", time.Now().Format("06-01-02T15.04.05"), deploymentSuffix)
+
+		// TODO: Package this up with a nice commandline option
+		if true {
+
+			ku.logger.Infof("Generating the agent scale sets ARM template...")
+
+			armJSON, err := json.MarhsalIndent(&templateMap, "", "  ")
+			if err != nil {
+				return err
+			}
+			if err = ioutil.WriteFile("vmss.arm.json", armJSON); err != nil {
+				return err
+			}
+			paramsJSON, err := json.MarhsalIndent(&parametersMap, "", "  ")
+			if err != nil {
+				return err
+			}
+			if err = ioutil.WriteFile("vmss.parameters.json", paramsJSON); err != nil {
+				return err
+			}
+			return nil
+
+		}
 
 		ku.logger.Infof("Deploying the agent scale sets ARM template...")
 		_, err = ku.Client.DeployTemplate(
