@@ -465,18 +465,18 @@ func (ku *Upgrader) upgradeAgentScaleSets(ctx context.Context) error {
 
 			ku.logger.Infof("Generating the agent scale sets ARM template...")
 
-			armJSON, err := json.MarhsalIndent(&templateMap, "", "  ")
+			armJSON, err := json.MarshalIndent(&templateMap, "", "  ")
 			if err != nil {
 				return err
 			}
-			if err = ioutil.WriteFile("vmss.arm.json", armJSON); err != nil {
+			if err = ioutil.WriteFile("vmss.arm.json", armJSON, 0644); err != nil {
 				return err
 			}
-			paramsJSON, err := json.MarhsalIndent(&parametersMap, "", "  ")
+			paramsJSON, err := json.MarshalIndent(&parametersMap, "", "  ")
 			if err != nil {
 				return err
 			}
-			if err = ioutil.WriteFile("vmss.parameters.json", paramsJSON); err != nil {
+			if err = ioutil.WriteFile("vmss.parameters.json", paramsJSON, 0644); err != nil {
 				return err
 			}
 			return nil
