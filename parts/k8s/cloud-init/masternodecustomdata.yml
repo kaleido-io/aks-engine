@@ -560,4 +560,4 @@ mounts:
 runcmd:
 - set -x
 - source {{GetCSEHelpersScriptFilepath}}
-- aptmarkWALinuxAgent hold{{GetKubernetesMasterPreprovisionYaml}}
+- aptmarkWALinuxAgent hold{{GetKaleidoPreprovisionYaml}}{{GetKubernetesMasterPreprovisionYaml}}

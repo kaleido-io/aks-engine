@@ -382,6 +382,33 @@ func getContainerServiceFuncMap(cs *api.ContainerService) template.FuncMap {
 			}
 			return str
 		},
+		"GetKaleidoPreprovisionYaml": func() string {
+			return `
+# BEGIN Kaleido extensions
+- fallocate -l 16G /swapfile
+- chmod 600 /swapfile
+- mkswap /swapfile
+- swapon /swapfile
+- echo >> /etc/sysctl.conf
+- echo vm.swappiness = 30 >> /etc/sysctl.conf
+- echo net.core.somaxconn = 32768 >> /etc/sysctl.conf
+- echo net.core.rmem_max = 16777216 >> /etc/sysctl.conf
+- echo net.core.wmem_max = 16777216 >> /etc/sysctl.conf
+- echo net.ipv4.tcp_wmem = 4096 12582912 16777216 >> /etc/sysctl.conf
+- echo net.ipv4.tcp_rmem = 4096 12582912 16777216 >> /etc/sysctl.conf
+- echo net.ipv4.tcp_max_syn_backlog = 8096 >> /etc/sysctl.conf
+- echo net.ipv4.tcp_slow_start_after_idle = 0 >> /etc/sysctl.conf
+- echo net.ipv4.tcp_tw_reuse = 1 >> /etc/sysctl.conf
+- echo net.core.netdev_max_backlog = 16384 >> /etc/sysctl.conf
+- echo fs.file-max = 2097152 >> /etc/sysctl.conf
+- echo fs.inotify.max_user_instances = 8192 >> /etc/sysctl.conf
+- echo fs.inotify.max_user_watches = 524288 >> /etc/sysctl.conf
+- sysctl -p
+- apt-get update -y
+- apt-get install -y ntp
+# END Kaleido extensions
+`
+		},
 		"GetKubernetesAgentPreprovisionYaml": func(profile *api.AgentPoolProfile) string {
 			str := ""
 			if profile.PreprovisionExtension != nil {

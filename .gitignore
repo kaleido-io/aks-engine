@@ -46,3 +46,6 @@ vhd/packer/sp.json
 # exclude vendor directory from gitignore
 !/vendor/**/*
 !/test/e2e/vendor/**/*
+
+# intellij
+*.iml
