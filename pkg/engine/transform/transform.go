@@ -33,14 +33,15 @@ const (
 	windowsConfigurationFieldName = "windowsConfiguration"
 
 	// ARM resource Types
-	nsgResourceType  = "Microsoft.Network/networkSecurityGroups"
-	rtResourceType   = "Microsoft.Network/routeTables"
-	vmResourceType   = "Microsoft.Compute/virtualMachines"
-	vmExtensionType  = "Microsoft.Compute/virtualMachines/extensions"
-	nicResourceType  = "Microsoft.Network/networkInterfaces"
-	vnetResourceType = "Microsoft.Network/virtualNetworks"
-	vmasResourceType = "Microsoft.Compute/availabilitySets"
-	lbResourceType   = "Microsoft.Network/loadBalancers"
+	nsgResourceType   = "Microsoft.Network/networkSecurityGroups"
+	rtResourceType    = "Microsoft.Network/routeTables"
+	vmResourceType    = "Microsoft.Compute/virtualMachines"
+	vmExtensionType   = "Microsoft.Compute/virtualMachines/extensions"
+	nicResourceType   = "Microsoft.Network/networkInterfaces"
+	vnetResourceType  = "Microsoft.Network/virtualNetworks"
+	vmasResourceType  = "Microsoft.Compute/availabilitySets"
+	lbResourceType    = "Microsoft.Network/loadBalancers"
+	vmssExtensionType = "Microsoft.Compute/virtualMachineScaleSets"
 
 	// resource ids
 	nsgID     = "nsgID"
@@ -343,7 +344,7 @@ func (t *Transformer) NormalizeResourcesForK8sMasterUpgrade(logger *logrus.Entry
 			continue
 		}
 
-		if !(resourceType == vmResourceType || resourceType == vmExtensionType || resourceType == nicResourceType) {
+		if !(resourceType == vmResourceType || resourceType == vmExtensionType || resourceType == nicResourceType || resourceType == vmssExtensionType) {
 			continue
 		}
 
@@ -366,6 +367,14 @@ func (t *Transformer) NormalizeResourcesForK8sMasterUpgrade(logger *logrus.Entry
 				}
 				continue
 			}
+		} else if resourceType == vmssExtensionType {
+
+			logger.Infoln(fmt.Sprintf("Removing VMSS: %s from template", resourceName))
+			if len(filteredResources) > 0 {
+				filteredResources = filteredResources[:len(filteredResources)-1]
+			}
+			continue
+
 		}
 
 		if strings.EqualFold(resourceType, vmResourceType) &&
