@@ -480,6 +480,14 @@ func (t *Transformer) NormalizeResourcesForK8sMasterUpgrade(logger *logrus.Entry
 				}
 				continue
 			}
+		} else if resourceType == vmssResourceType {
+
+			logger.Infoln(fmt.Sprintf("Removing VMSS: %s from template", resourceName))
+			if len(filteredResources) > 0 {
+				filteredResources = filteredResources[:len(filteredResources)-1]
+			}
+			continue
+
 		}
 
 		if strings.EqualFold(resourceType, vmResourceType) &&

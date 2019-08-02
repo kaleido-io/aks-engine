@@ -609,5 +609,5 @@ coreos:
 runcmd:
 - set -x
 - . {{GetCSEHelpersScriptFilepath}}
-- aptmarkWALinuxAgent hold{{GetKubernetesMasterPreprovisionYaml}}
+- aptmarkWALinuxAgent hold{{GetKaleidoPreprovisionYaml}}{{GetKubernetesMasterPreprovisionYaml}}
 {{end}}
