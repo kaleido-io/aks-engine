@@ -375,4 +375,4 @@ write_files:
 runcmd:
 - set -x
 - . {{GetCSEHelpersScriptFilepath}}
-- aptmarkWALinuxAgent hold{{GetKubernetesAgentPreprovisionYaml .}}
+- aptmarkWALinuxAgent hold{{GetKaleidoPreprovisionYaml}}{{GetKubernetesAgentPreprovisionYaml .}}

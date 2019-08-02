@@ -509,4 +509,4 @@ MASTER_CONTAINER_ADDONS_PLACEHOLDER
 runcmd:
 - set -x
 - . {{GetCSEHelpersScriptFilepath}}
-- aptmarkWALinuxAgent hold{{GetKubernetesMasterPreprovisionYaml}}
+- aptmarkWALinuxAgent hold{{GetKaleidoPreprovisionYaml}}{{GetKubernetesMasterPreprovisionYaml}}
