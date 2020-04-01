@@ -6,9 +6,9 @@ DIST_DIRS         = find * -type d -exec
 .PHONY: bootstrap build test test_fmt validate-copyright-headers fmt lint ci
 
 ifdef DEBUG
-GOFLAGS   := -gcflags="-N -l" -mod=vendor
+GOFLAGS   := -gcflags="-N -l" -mod=mod
 else
-GOFLAGS   := -mod=vendor
+GOFLAGS   := -mod=mod
 endif
 
 # go option
@@ -81,7 +81,7 @@ validate-shell:
 .PHONY: generate
 generate: bootstrap
 	@echo "$$(go-bindata --version)"
-	go generate $(GOFLAGS) -v ./... > /dev/null 2>&1
+	go generate $(GOFLAGS) -v ./...
 
 .PHONY: generate-azure-constants
 generate-azure-constants:
@@ -157,7 +157,7 @@ ginkgoBuild: generate
 	make -C ./test/e2e ginkgo-build
 
 test: generate ginkgoBuild
-	ginkgo -mod=vendor -skipPackage test/e2e -failFast -r -v -tags=fast -ldflags '$(LDFLAGS)' .
+	ginkgo -mod=mod -skipPackage test/e2e -failFast -r -v -tags=fast -ldflags '$(LDFLAGS)' .
 
 .PHONY: test-style
 test-style: validate-go validate-shell validate-copyright-headers
