@@ -357,6 +357,11 @@ func (rcc *rotateCertsCmd) getClusterNodes() error {
 			},
 			{
 				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015G",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
 					Name: "k8s-agentpool1-16827348-vmss00015H",
 				},
 			},
