@@ -395,22 +395,24 @@ func (rcc *rotateCertsCmd) rebootAllNodes(ctx context.Context) error {
 	if err != nil {
 		return errors.Wrap(err, "failed to list Virtual Machines in resource group "+rcc.resourceGroupName)
 	}
-	vmssListPage, err := rcc.client.ListVirtualMachineScaleSets(ctx, rcc.resourceGroupName)
-	if err != nil {
-		return errors.Wrap(err, "failed to list Virtual Machine Scale Sets in resource group "+rcc.resourceGroupName)
-	}
+	//vmssListPage, err := rcc.client.ListVirtualMachineScaleSets(ctx, rcc.resourceGroupName)
+	//if err != nil {
+	//	return errors.Wrap(err, "failed to list Virtual Machine Scale Sets in resource group "+rcc.resourceGroupName)
+	//}
 	for _, vm := range vmListPage.Values() {
-		err = rcc.client.RestartVirtualMachine(ctx, rcc.resourceGroupName, *vm.Name)
-		if err != nil {
-			return errors.Wrap(err, "failed to restart Virtual Machine "+*vm.Name)
+		if strings.Contains(*vm.Name, "master") {
+			err = rcc.client.RestartVirtualMachine(ctx, rcc.resourceGroupName, *vm.Name)
+			if err != nil {
+				return errors.Wrap(err, "failed to restart Virtual Machine "+*vm.Name)
+			}
 		}
 	}
-	for _, vmss := range vmssListPage.Values() {
-		err = rcc.client.RestartVirtualMachineScaleSets(ctx, rcc.resourceGroupName, *vmss.Name, nil)
-		if err != nil {
-			return errors.Wrap(err, "failed to restart Virtual Machine Scale Sets "+*vmss.Name)
-		}
-	}
+	//for _, vmss := range vmssListPage.Values() {
+	//	err = rcc.client.RestartVirtualMachineScaleSets(ctx, rcc.resourceGroupName, *vmss.Name, nil)
+	//	if err != nil {
+	//		return errors.Wrap(err, "failed to restart Virtual Machine Scale Sets "+*vmss.Name)
+	//	}
+	//}
 	return nil
 }
 
