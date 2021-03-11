@@ -247,48 +247,137 @@ func (rcc *rotateCertsCmd) getClusterNodes() error {
 	if err != nil {
 		return errors.Wrap(err, "failed to get Kubernetes Client")
 	}
+
 	nodeList := &v1.NodeList{
 		Items: []v1.Node{
 			{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "k8s-master-10665877-0",
+					Name: "k8s-master-16827348-0",
 				},
 			},
 			{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "k8s-master-10665877-1",
+					Name: "k8s-master-16827348-1",
 				},
 			},
 			{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "k8s-master-10665877-2",
+					Name: "k8s-master-16827348-2",
 				},
 			},
-
 			{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "k8s-agentpool1-10665877-vmss000015",
+					Name: "k8s-agentpool1-16827348-vmss00014Q",
 				},
 			},
-
-
 			{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "k8s-agentpool1-10665877-vmss000016",
+					Name: "k8s-agentpool1-16827348-vmss00014S",
 				},
 			},
-
-
 			{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "k8s-agentpool1-10665877-vmss000017",
+					Name: "k8s-agentpool1-16827348-vmss00014T",
 				},
 			},
-
-
 			{
 				ObjectMeta: metav1.ObjectMeta{
-					Name: "k8s-agentpool1-10665877-vmss000018",
+					Name: "k8s-agentpool1-16827348-vmss00014U",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00014V",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00014W",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00014Y",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00014Z",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000152",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000153",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000154",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000155",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000156",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000157",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000158",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss000159",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015A",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015B",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015E",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015F",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015H",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015I",
+				},
+			},
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-16827348-vmss00015J",
 				},
 			},
 		},
