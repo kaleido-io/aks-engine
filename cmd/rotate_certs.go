@@ -264,6 +264,33 @@ func (rcc *rotateCertsCmd) getClusterNodes() error {
 					Name: "k8s-master-10665877-2",
 				},
 			},
+
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-10665877-vmss000015",
+				},
+			},
+
+
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-10665877-vmss000016",
+				},
+			},
+
+
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-10665877-vmss000017",
+				},
+			},
+
+
+			{
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-agentpool1-10665877-vmss000018",
+				},
+			},
 		},
 	}
 	if err != nil {
