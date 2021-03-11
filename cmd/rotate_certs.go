@@ -8,6 +8,7 @@ import (
 	"context"
 	"fmt"
 	"io/ioutil"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"os"
 	"path"
 	"strconv"
@@ -242,25 +243,25 @@ func (rcc *rotateCertsCmd) writeArtifacts() error {
 }
 
 func (rcc *rotateCertsCmd) getClusterNodes() error {
-	kubeClient, err := rcc.getKubeClient()
+	_, err := rcc.getKubeClient()
 	if err != nil {
 		return errors.Wrap(err, "failed to get Kubernetes Client")
 	}
-	nodeList, err := &v1.NodeList{
+	nodeList := &v1.NodeList{
 		Items: []v1.Node{
 			{
-				ObjectMeta: {
-					Name: "k8s-master-10665877-0"
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-master-10665877-0",
 				},
 			},
 			{
-				ObjectMeta: {
-					Name: "k8s-master-10665877-1"
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-master-10665877-1",
 				},
 			},
 			{
-				ObjectMeta: {
-					Name: "k8s-master-10665877-2"
+				ObjectMeta: metav1.ObjectMeta{
+					Name: "k8s-master-10665877-2",
 				},
 			},
 		},
