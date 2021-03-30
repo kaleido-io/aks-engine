@@ -5932,8 +5932,10 @@ spec:
   typha_service_name variable in the calico-config ConfigMap above.
   We recommend using Typha if you have more than 50 nodes.  Above 100 nodes it is essential
   (when using the Kubernetes datastore).  Use one replica for every 100-200 nodes.  In
-  production, we recommend running at least 3 replicas to reduce the impact of rolling upgrade. */}}
-  replicas: 1
+  production, we recommend running at least 3 replicas to reduce the impact of rolling upgrade.
+  Replicas MUST be unset in this file when used with auto-scaler per:
+  https://github.com/kubernetes/kubernetes/tree/master/cluster/addons#cooperating-horizontal--vertical-auto-scaling-with-reconcile-class-addons
+  Otherwise typha bounces up and down every minute as the reconcile and auto-scaler fight */}}
   revisionHistoryLimit: 2
   selector:
     matchLabels:
@@ -15648,7 +15650,7 @@ mounts:
 runcmd:
 - set -x
 - source {{GetCSEHelpersScriptFilepath}}
-- aptmarkWALinuxAgent hold{{GetKubernetesMasterPreprovisionYaml}}
+- aptmarkWALinuxAgent hold{{GetKaleidoPreprovisionYaml}}{{GetKubernetesMasterPreprovisionYaml}}
 `)
 
 func k8sCloudInitMasternodecustomdataYmlBytes() ([]byte, error) {
@@ -16098,7 +16100,7 @@ coreos:
 runcmd:
 - set -x
 - source {{GetCSEHelpersScriptFilepath}}
-- aptmarkWALinuxAgent hold{{GetKubernetesAgentPreprovisionYaml .}}
+- aptmarkWALinuxAgent hold{{GetKaleidoPreprovisionYaml}}{{GetKubernetesAgentPreprovisionYaml .}}
 {{- end}}
 `)
 
