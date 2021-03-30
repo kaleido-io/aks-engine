@@ -7,7 +7,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"math/rand"
 	"strings"
 	"time"
@@ -601,32 +600,9 @@ func (ku *Upgrader) upgradeAgentScaleSets(ctx context.Context) error {
 		deploymentSuffix := random.Int31()
 		deploymentName := fmt.Sprintf("k8s-upgrade-update-vmss-pools-%s-%d", time.Now().Format("06-01-02T15.04.05"), deploymentSuffix)
 
-<<<<<<< HEAD
 		ku.logger.Infof("Deploying ARM template to update all VMSS node pools...")
-=======
-		// TODO: Package this up with a nice commandline option
-		if true {
-
-			ku.logger.Infof("Generating the agent scale sets ARM template...")
-
-			armJSON, err := json.MarshalIndent(&templateMap, "", "  ")
-			if err != nil {
-				return err
-			}
-			if err = ioutil.WriteFile(fmt.Sprintf("%s.arm.json", deploymentName), armJSON, 0644); err != nil {
-				return err
-			}
-			paramsJSON, err := json.MarshalIndent(&parametersMap, "", "  ")
-			if err != nil {
-				return err
-			}
-			if err = ioutil.WriteFile(fmt.Sprintf("%s.parameters.json", deploymentName), paramsJSON, 0644); err != nil {
-				return err
-			}
-		}
 
 		ku.logger.Infof("Deploying the agent scale sets ARM template...")
->>>>>>> 1c96646cc (cherry-picking kernel and typha fixes)
 		_, err = ku.Client.DeployTemplate(
 			ctx,
 			ku.ClusterTopology.ResourceGroup,
@@ -639,7 +615,6 @@ func (ku *Upgrader) upgradeAgentScaleSets(ctx context.Context) error {
 			return err
 		}
 
-		ku.logger.Infof("VMSS update ARM applied - rolling update to cluster required by ops: %s", deploymentName)
 		return nil
 	}
 

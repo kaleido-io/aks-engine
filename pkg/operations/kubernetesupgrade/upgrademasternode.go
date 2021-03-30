@@ -5,9 +5,7 @@ package kubernetesupgrade
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"math/rand"
 	"strings"
 	"time"
@@ -62,22 +60,7 @@ func (kmn *UpgradeMasterNode) CreateNode(ctx context.Context, poolName string, m
 	deploymentSuffix := random.Int31()
 	deploymentName := fmt.Sprintf("k8s-upgrade-master-%d-%s-%d", masterNo, time.Now().Format("06-01-02T15.04.05"), deploymentSuffix)
 
-	armJSON, err := json.MarshalIndent(&kmn.TemplateMap, "", "  ")
-	if err != nil {
-		return err
-	}
-	if err = ioutil.WriteFile(fmt.Sprintf("%s.arm.json", deploymentName), armJSON, 0644); err != nil {
-		return err
-	}
-	paramsJSON, err := json.MarshalIndent(&kmn.ParametersMap, "", "  ")
-	if err != nil {
-		return err
-	}
-	if err = ioutil.WriteFile(fmt.Sprintf("%s.properties.json", deploymentName), paramsJSON, 0644); err != nil {
-		return err
-	}
-
-	_, err = kmn.Client.DeployTemplate(
+	_, err := kmn.Client.DeployTemplate(
 		ctx,
 		kmn.ResourceGroup,
 		deploymentName,
